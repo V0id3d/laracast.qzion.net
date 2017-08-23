@@ -13,7 +13,8 @@ class ThreadsTest extends TestCase
 
     public function a_user_can_browse_threads ()
     {
-        $response = $this->get('/threads');
+        $response = $this->get('/');
+
         $response->assertStatus(200);
     }
 }
