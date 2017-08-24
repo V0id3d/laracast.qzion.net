@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Forum\Reply;
 use App\Forum\Thread;
 use Illuminate\Http\Request;
 

@@ -37,8 +37,12 @@ class ThreadsTest extends TestCase
         $response->assertSee($this->thread->title);
     }
 
+
     public function test_user_can_read_replies_thaat_are_associated_with_thread()
     {
+        $reply = factory('App\Forum\Reply')->create(['thread_id' => $this->thread->id]);
+        $response = $this->get('/threads/' . $this->thread->id);
+        $response->assertSee($reply->body);
         // Given we have a thread
         // Thread includes replies
         // Visit thread page should see replies
