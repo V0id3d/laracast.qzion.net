@@ -9,17 +9,21 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ThreadsTest extends TestCase
 {
-//    use DatabaseMigrations;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->thread = factory('App\Forum\Thread')->create();
+    }
 
     /**
      * Test to see if a user can browse the actual created threads
      */
     public function test_user_can_browse_threads()
     {
-        $thread = factory('App\Forum\Thread')->create();
         $response = $this->get('/threads');
         $response->assertStatus(200);
-        $response->assertSee($thread->title);
+        $response->assertSee($this->thread->title);
     }
 
 
@@ -28,10 +32,15 @@ class ThreadsTest extends TestCase
      */
     public function test_user_can_view_specific_thread()
     {
-        $thread = factory('App\Forum\Thread')->create();
-        $response = $this->get('/threads/' . $thread->id);
+        $response = $this->get('/threads/' . $this->thread->id);
         $response->assertStatus(200);
-        $response->assertSee($thread->title);
+        $response->assertSee($this->thread->title);
     }
 
+    public function test_user_can_read_replies_thaat_are_associated_with_thread()
+    {
+        // Given we have a thread
+        // Thread includes replies
+        // Visit thread page should see replies
+    }
 }
