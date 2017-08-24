@@ -44,7 +44,7 @@ $factory->define(App\Forum\Thread::class, function(Faker\Generator $faker){
 $factory->define(App\Forum\Reply::class, function (Faker\Generator $faker) {
     return [
         'thread_id' => function () {
-            return factory('App\Thread')->create()->id;
+            return factory('App\Forum\Thread')->create()->id;
         },
         'user_id' => function () {
             return factory('App\User')->create()->id;

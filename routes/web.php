@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/threads', function () {
-    return 'working';
+/**
+ * Index all Threads
+ */
+Route::prefix('threads')->group(function () {
+  Route::get('/', 'ThreadsController@index');
+  Route::get('/{thread}', 'ThreadsController@show');
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
