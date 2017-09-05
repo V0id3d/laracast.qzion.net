@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::prefix('threads')->group(function () {
   Route::get('/', 'ThreadsController@index');
   Route::get('/{thread}', 'ThreadsController@show');
+  Route::post('/{thread}/replies', 'RepliesController@store');
 });
 
 

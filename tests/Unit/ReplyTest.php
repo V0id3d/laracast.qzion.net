@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ReplyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * Checks to see if a reply has an owner
      * @test

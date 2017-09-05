@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ThreadsTest extends TestCase
 {
+    use DatabaseMigrations;
 
     public function setUp()
     {
@@ -37,8 +38,11 @@ class ThreadsTest extends TestCase
         $response->assertSee($this->thread->title);
     }
 
-
-    public function test_user_can_read_replies_thaat_are_associated_with_thread()
+    /**
+     * Test to see if a user can read replies from a thread
+     * @test
+     */
+    public function test_user_can_read_replies_that_are_associated_with_thread()
     {
         $reply = factory('App\Forum\Reply')->create(['thread_id' => $this->thread->id]);
         $response = $this->get('/threads/' . $this->thread->id);
