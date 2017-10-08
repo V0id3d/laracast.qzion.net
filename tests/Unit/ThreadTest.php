@@ -16,7 +16,7 @@ class ThreadTest extends TestCase
     {
         parent::setUp();
 
-        $this->thread = factory('App\Forum\Thread')->create();
+        $this->thread = create('App\Forum\Thread');
     }
 
     /**

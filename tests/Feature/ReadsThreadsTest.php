@@ -14,7 +14,7 @@ class ReadsThreadsTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->thread = factory('App\Forum\Thread')->create();
+        $this->thread = create('App\Forum\Thread');
     }
 
     /**
@@ -46,7 +46,7 @@ class ReadsThreadsTest extends TestCase
      */
     public function a_user_can_read_replies_that_are_associated_with_thread()
     {
-        $reply = factory('App\Forum\Reply')->create(['thread_id' => $this->thread->id]);
+        $reply = create('App\Forum\Reply', ['thread_id' => $this->thread->id]);
         $response = $this->get('/threads/' . $this->thread->id);
         $response->assertSee($reply->body);
 

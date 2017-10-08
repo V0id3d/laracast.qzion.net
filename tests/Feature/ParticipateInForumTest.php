@@ -22,9 +22,9 @@ class ParticipateInForumTest extends TestCase
      */
     public function an_authenticated_user_may_participate_in_forum_threads()
     {
-        $this->be($user = factory('App\User')->create());
-        $thread = factory('App\Forum\Thread')->create();
-        $reply = factory('App\Forum\Reply')->create();
+        $this->signIn();
+        $thread = create('App\Forum\Thread');
+        $reply = make('App\Forum\Reply');
         $this->post($thread->path() . '/replies', $reply->toArray());
         $this->get($thread->path())
             ->assertSee($reply->body);
@@ -37,8 +37,8 @@ class ParticipateInForumTest extends TestCase
     public function a_non_authenticated_user_may_not_participate_in_forum_threads()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
-        $thread = factory('App\Forum\Thread')->create();
-        $reply = factory('App\Forum\Reply')->make();
+        $thread = create('App\Forum\Thread');
+        $reply = make('App\Forum\Reply');
         $this->post($thread->path() . '/replies', $reply->toArray());
     }
 }
