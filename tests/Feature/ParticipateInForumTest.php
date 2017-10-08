@@ -11,6 +11,11 @@ class ParticipateInForumTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp()
+    {
+        parent::setUp();
+    }
+
     /**
      * Test to see if an authenticated user can post on the threads
      * @test
@@ -21,7 +26,8 @@ class ParticipateInForumTest extends TestCase
         $thread = factory('App\Forum\Thread')->create();
         $reply = factory('App\Forum\Reply')->create();
         $this->post($thread->path() . '/replies', $reply->toArray());
-        $this->get($thread->path())->assertSee($reply->body);
+        $this->get($thread->path())
+            ->assertSee($reply->body);
     }
 
     /**
