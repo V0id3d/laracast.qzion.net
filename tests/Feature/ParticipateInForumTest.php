@@ -25,6 +25,7 @@ class ParticipateInForumTest extends TestCase
     }
 
     /**
+     * A User that is not authenticated can not participate in forum threads.
      * @test
      */
     public function a_non_authenticated_user_may_not_participate_in_forum_threads()
