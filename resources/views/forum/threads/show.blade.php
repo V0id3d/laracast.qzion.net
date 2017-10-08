@@ -21,5 +21,13 @@
                 @endforeach
             </div>
         </div>
+
+        @if (auth()->check())
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    test
+                </div>
+            </div>
+        @endif
     </div>
 @endsection

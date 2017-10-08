@@ -38,7 +38,7 @@ class ParticipateInForumTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
         $thread = factory('App\Forum\Thread')->create();
-        $reply = factory('App\Forum\Reply')->create();
+        $reply = factory('App\Forum\Reply')->make();
         $this->post($thread->path() . '/replies', $reply->toArray());
     }
 }
