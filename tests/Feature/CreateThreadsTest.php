@@ -30,18 +30,14 @@ class CreateThreadsTest extends TestCase
      */
     function guests_may_not_create_threads()
     {
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-        $this->post('/threads', []);
-    }
+        $this->withExceptionHandling();
 
-    /**
-     * Test to see if a guest is redirected to login when trying to see create thread screen.
-     * @test
-     */
-    function guests_may_not_see_create_thread_page()
-    {
-        $this->withExceptionHandling()->get(route('Thread.Create'))
+        $this->get(route('Thread.Create'))
+            ->assertRedirect('/login');
+
+        $this->post(route('Thread.Store'), [])
             ->assertRedirect('/login');
     }
+
 
 }

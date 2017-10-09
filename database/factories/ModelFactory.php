@@ -23,6 +23,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Forum\Channel::class, function($faker)
+{
+    $name = $faker->word;
+    return [
+        'name' => $name,
+        'slug' => $name
+    ];
+});
+
 /**
  * Thread Seeder
  * @var \Illuminate\Database\Eloquent\Factory $factory
@@ -31,6 +40,9 @@ $factory->define(App\Forum\Thread::class, function(Faker\Generator $faker){
     return [
         'user_id' => function () {
             return factory('App\User')->create()->id;
+        },
+        'channel_id' => function () {
+            return factory('App\Forum\Channel')->create()->id;
         },
         'title' => $faker->sentence,
         'body' => $faker->paragraph
