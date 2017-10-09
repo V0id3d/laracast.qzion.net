@@ -9,17 +9,17 @@
                         Create New Thread
                     </div>
                     <div class="panel-body">
-                        <form action="#">
+                        <form method="POST" action="{{ route('Thread.Store') }}">
                             <div class="form-group">
                                 <label for="title">Title:</label>
-                                <input type="text" class="form-control" id="title" placeholder="Thread Title">
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Thread Title">
                             </div>
                             <div class="form-group">
                                 <label for="body">Body:</label>
                                 <textarea name="body" id="body" class="form-control" rows="5" placeholder="Thread Body"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-default">Publish</button>
+                            <button type="submit" class="btn btn-primary">Publish</button>
                         </form>
                     </div>
                 </div>
