@@ -20,13 +20,13 @@ Route::get('/', function () {
  */
 Route::prefix('threads')->group(function () {
 
-    Route::get('create', 'ThreadsController@create');
-    Route::get('/{thread}', 'ThreadsController@show');
-    Route::get('/', 'ThreadsController@index');
+    Route::get('create', 'ThreadsController@create')->name('Thread.Create');
+    Route::get('/{thread}', 'ThreadsController@show')->name('Thread.Show');
+    Route::get('/', 'ThreadsController@index')->name('Thread.Index');
 
 
-    Route::post('/{thread}/replies', 'RepliesController@store');
-    Route::post('/', 'ThreadsController@store');
+    Route::post('/{thread}/replies', 'RepliesController@store')->name('Thread.Reply.Store');
+    Route::post('/', 'ThreadsController@store')->name('Thread.Store');
 });
 
 
