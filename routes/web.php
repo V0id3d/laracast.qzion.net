@@ -20,9 +20,10 @@ Route::get('/', function () {
  */
 Route::prefix('threads')->group(function () {
 
-    Route::get('test', 'ThreadsController@index');
-    Route::get('/', 'ThreadsController@create');
+    Route::get('create', 'ThreadsController@create');
     Route::get('/{thread}', 'ThreadsController@show');
+    Route::get('/', 'ThreadsController@index');
+
 
     Route::post('/{thread}/replies', 'RepliesController@store');
     Route::post('/', 'ThreadsController@store');
