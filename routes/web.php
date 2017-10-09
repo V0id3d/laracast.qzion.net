@@ -19,7 +19,7 @@ Route::get('/', function () {
  * Index all Threads
  */
 Route::prefix('threads')->group(function () {
-  Route::get('/', 'ThreadsController@index');
+  Route::get('/', 'ThreadsController@create');
   Route::get('/{thread}', 'ThreadsController@show');
   Route::get('test', 'ThreadsController@index');
 
