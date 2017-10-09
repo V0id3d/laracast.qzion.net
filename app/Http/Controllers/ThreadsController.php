@@ -31,6 +31,7 @@ class ThreadsController extends Controller
      */
     public function create()
     {
+        dd('here');
         return view('forum.threads.create');
     }
 
