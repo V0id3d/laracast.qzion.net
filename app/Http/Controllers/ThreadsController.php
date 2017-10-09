@@ -59,7 +59,7 @@ class ThreadsController extends Controller
      * @param  \App\Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show($channelId, Thread $thread)
     {
         return view('forum.threads.show', compact('thread'));
     }
