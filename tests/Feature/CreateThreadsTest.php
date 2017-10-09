@@ -34,4 +34,14 @@ class CreateThreadsTest extends TestCase
         $this->post('/threads', []);
     }
 
+    /**
+     * Test to see if a guest is redirected to login when trying to see create thread screen.
+     * @test
+     */
+    function guests_may_not_see_create_thread_page()
+    {
+        $this->withExceptionHandling()->get(route('Thread.Create'))
+            ->assertRedirect('/login');
+    }
+
 }
