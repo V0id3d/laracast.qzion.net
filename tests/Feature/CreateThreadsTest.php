@@ -2,32 +2,34 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
     use DatabaseMigrations;
 
     /**
-     * Helper to allow for quick checking of validation errors
+     * Helper to allow for quick checking of validation errors.
+     *
      * @param array $overrides
+     *
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
-    public function publishThread($overrides =[])
+    public function publishThread($overrides = [])
     {
         $this->withExceptionHandling()->signIn();
         $thread = make('App\Forum\Thread', $overrides);
+
         return $this->post(route('Thread.Store', $thread->toArray()));
     }
 
     /**
-     * Test to see if authenticated user can create new forum threads
+     * Test to see if authenticated user can create new forum threads.
+     *
      * @test
      */
-    function an_authenticated_user_can_create_new_forum_threads()
+    public function an_authenticated_user_can_create_new_forum_threads()
     {
         $this->signIn();
         $thread = make('App\Forum\Thread');
@@ -38,10 +40,11 @@ class CreateThreadsTest extends TestCase
     }
 
     /**
-     * Test to see if guest can create thread
+     * Test to see if guest can create thread.
+     *
      * @test
      */
-    function guests_may_not_create_threads()
+    public function guests_may_not_create_threads()
     {
         $this->withExceptionHandling();
 
@@ -53,7 +56,8 @@ class CreateThreadsTest extends TestCase
     }
 
     /**
-     * Test that the thread title section has been filled out
+     * Test that the thread title section has been filled out.
+     *
      * @test
      */
     public function a_thread_requires_a_title()
@@ -63,7 +67,8 @@ class CreateThreadsTest extends TestCase
     }
 
     /**
-     * Test that the thread body section has been filled out
+     * Test that the thread body section has been filled out.
+     *
      * @test
      */
     public function a_thread_requires_a_body()
@@ -73,7 +78,8 @@ class CreateThreadsTest extends TestCase
     }
 
     /**
-     * Test that the thread valid channel section has been filled out
+     * Test that the thread valid channel section has been filled out.
+     *
      * @test
      */
     public function a_thread_requires_a_valid_channel()
@@ -84,6 +90,4 @@ class CreateThreadsTest extends TestCase
         $this->publishThread(['channel_id' => 8780])
             ->assertSessionHasErrors('channel_id');
     }
-
-
 }

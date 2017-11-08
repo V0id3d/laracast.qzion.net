@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ReadsThreadsTest extends TestCase
 {
@@ -18,7 +16,8 @@ class ReadsThreadsTest extends TestCase
     }
 
     /**
-     * Test to see if a user can browse the actual created threads
+     * Test to see if a user can browse the actual created threads.
+     *
      * @test
      */
     public function a_user_can_browse_threads()
@@ -28,9 +27,9 @@ class ReadsThreadsTest extends TestCase
         $response->assertSee($this->thread->title);
     }
 
-
     /**
-     * Test to see if a user can see a specific thread
+     * Test to see if a user can see a specific thread.
+     *
      * @test
      */
     public function a_user_can_view_specific_thread()
@@ -41,7 +40,8 @@ class ReadsThreadsTest extends TestCase
     }
 
     /**
-     * Test to see if a user can read replies from a thread
+     * Test to see if a user can read replies from a thread.
+     *
      * @test
      */
     public function a_user_can_read_replies_that_are_associated_with_thread()
@@ -49,6 +49,5 @@ class ReadsThreadsTest extends TestCase
         $reply = create('App\Forum\Reply', ['thread_id' => $this->thread->id]);
         $response = $this->get(route('Thread.Show', [$this->thread->channel->slug, $this->thread->id]));
         $response->assertSee($reply->body);
-
     }
 }

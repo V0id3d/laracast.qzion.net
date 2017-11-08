@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
 {
@@ -17,7 +15,8 @@ class ParticipateInForumTest extends TestCase
     }
 
     /**
-     * Test to see if an authenticated user can post on the threads
+     * Test to see if an authenticated user can post on the threads.
+     *
      * @test
      */
     public function an_authenticated_user_may_participate_in_forum_threads()
@@ -25,13 +24,14 @@ class ParticipateInForumTest extends TestCase
         $this->signIn();
         $thread = create('App\Forum\Thread');
         $reply = make('App\Forum\Reply');
-        $this->post($thread->path() . '/replies', $reply->toArray());
+        $this->post($thread->path().'/replies', $reply->toArray());
         $this->get($thread->path())
             ->assertSee($reply->body);
     }
 
     /**
      * A User that is not authenticated can not participate in forum threads.
+     *
      * @test
      */
     public function a_non_authenticated_user_may_not_participate_in_forum_threads()
@@ -39,11 +39,12 @@ class ParticipateInForumTest extends TestCase
         $this->expectException('Illuminate\Auth\AuthenticationException');
         $thread = create('App\Forum\Thread');
         $reply = make('App\Forum\Reply');
-        $this->post($thread->path() . '/replies', $reply->toArray());
+        $this->post($thread->path().'/replies', $reply->toArray());
     }
 
     /**
-     * Tests to ensure that the reply has a body
+     * Tests to ensure that the reply has a body.
+     *
      * @test
      */
     public function a_reply_requires_a_body()
@@ -53,8 +54,7 @@ class ParticipateInForumTest extends TestCase
         $thread = create('App\Forum\Thread');
         $reply = make('App\Forum\Reply', ['body' => null]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->post($thread->path().'/replies', $reply->toArray())
             ->assertSessionHasErrors('body');
-
     }
 }

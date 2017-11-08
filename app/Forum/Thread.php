@@ -10,7 +10,8 @@ class Thread extends Model
     protected $guarded = [];
 
     /**
-     * Helper function to send the path of the current thread
+     * Helper function to send the path of the current thread.
+     *
      * @return string
      */
     public function path()
@@ -19,7 +20,8 @@ class Thread extends Model
     }
 
     /**
-     * Relationship to replies from thread
+     * Relationship to replies from thread.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function replies()
@@ -28,7 +30,8 @@ class Thread extends Model
     }
 
     /**
-     * Relationship to the Owner of the thread
+     * Relationship to the Owner of the thread.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function owner()
@@ -42,7 +45,8 @@ class Thread extends Model
     }
 
     /**
-     * Creates a reply on the thread
+     * Creates a reply on the thread.
+     *
      * @param $reply
      */
     public function addReply($reply)
@@ -50,4 +54,3 @@ class Thread extends Model
         $this->replies()->create($reply);
     }
 }
-
