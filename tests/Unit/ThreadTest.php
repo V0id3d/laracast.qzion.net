@@ -2,9 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {
@@ -20,7 +19,8 @@ class ThreadTest extends TestCase
     }
 
     /**
-     * Test to see if the path method is showing properly
+     * Test to see if the path method is showing properly.
+     *
      * @test
      */
     public function a_thread_can_make_a_string_path()
@@ -29,7 +29,8 @@ class ThreadTest extends TestCase
     }
 
     /**
-     * Test to see if a thread can hold replies
+     * Test to see if a thread can hold replies.
+     *
      * @test
      */
     public function a_thread_has_replies()
@@ -38,7 +39,8 @@ class ThreadTest extends TestCase
     }
 
     /**
-     * Test to see if thread has a creator
+     * Test to see if thread has a creator.
+     *
      * @test
      */
     public function a_thread_has_a_creator()
@@ -47,21 +49,23 @@ class ThreadTest extends TestCase
     }
 
     /**
-     * Test to see if a thread can add a reply
+     * Test to see if a thread can add a reply.
+     *
      * @test
      */
     public function a_thread_can_add_a_reply()
     {
         $this->thread->addReply([
-            'body' => 'Simple Test',
-            'user_id' => 1
+            'body'    => 'Simple Test',
+            'user_id' => 1,
         ]);
 
         $this->assertCount(1, $this->thread->replies);
     }
 
     /**
-     * Test to see if a thread belongs to a channel
+     * Test to see if a thread belongs to a channel.
+     *
      * @test
      */
     public function a_thread_belongs_to_a_channel()
